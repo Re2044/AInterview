@@ -1,0 +1,42 @@
+# Built-in sample: a generic behavioural interview. Needs no personal data: no profile, no notes.
+# It is used automatically when no process folder is found, or with:  ainterviewer interview -p behavioural
+# Narrow it down without writing any files:  --role "Product Manager" --level "about 3 years of experience"
+# Sessions and weak spots go to ~/.local/share/ainterviewer/behavioural/ (never into the tool folder).
+# For your own employer and profile, start a real process instead:  ainterviewer init <dir>
+
+company: Northwind                     # fictional, so motivation questions have something to point at
+role: the role the candidate applied for
+round: behavioural
+round_description: hiring manager conversation
+team: the team the candidate would join
+interviewer_from: the hiring team, not HR
+
+candidate_level: >-
+  Not given. Work out the candidate's seniority from what they say, and judge them against strong
+  candidates at that level: a graduate is not expected to lead teams, a senior is expected to show
+  wider impact.
+
+interviewer_rules: >-
+  You know nothing about the candidate in advance: no CV, no name, no current employer. Never assume
+  any; if you need something, ask. Northwind is a made-up company: keep anything you say about it
+  generic and brief.
+
+team_facts: >-
+  Northwind is a mid-size product company (fictional) with small cross-functional teams that own their
+  work end to end. Values clear communication, ownership and steady improvement. Answer questions about
+  the team plausibly, briefly and generically.
+
+candidate_question_ideas: how the team measures success, what the first three months look like, how decisions get made
+
+panel:
+  - role: Hiring Manager
+    opens: true
+    people: [{name: Alex, voice: am_michael}, {name: Sarah, voice: bf_emma},
+             {name: Tom, voice: bm_george}, {name: Maya, voice: af_heart}]
+
+profile: ""          # no profile: the interviewer learns about you from the call
+notes: ""
+questions: questions.yaml
+
+interview:
+  technical_chance: 0          # role-agnostic: no technical deep-dives

@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Tests / tooling caches
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# Secrets (API keys are read from env vars; keep any local env files out)
+.env
+.env.*
+
+# Runtime data written when a process folder is the repo itself
+# (interview transcripts, debrief reports and weak-spot scores are personal)
+sessions/
+weak_spots.json
+*-init-output.txt
+
+# Editors / OS
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+
+# Kokoro TTS model files (~340 MB, downloaded separately; see README "Setup from scratch")
+models/

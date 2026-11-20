@@ -1,0 +1,77 @@
+# One recruitment process (one employer, one interview round) for AInterviewer.
+# Fill in what you know from the job ad, the recruiter and candidate reports; everything except
+# `company` is optional and falls back to a generic behavioural interview.
+# Run from this folder:  ~/Projects/AInterviewer/ainterviewer interview
+# Sessions and weak_spots.json are written next to this file.
+
+company: Acme
+role: Backend Engineer
+round: Hiring Manager                   # the round's name as the recruiter calls it
+round_description: behavioural          # a few words, e.g. "culture fit", "behavioural + motivation"
+team: the Payments team
+# interviewer_from: the Payments team, not HR    # "one person from ..." (default: team)
+
+# How the round runs, as the recruiter described it.
+# format: >-
+#   A 45-minute conversation about your past experience with the hiring manager. ...
+
+# What the interviewer assesses silently, and what a strong answer looks like here.
+# assess: >-
+#   ownership, prioritisation, how you work with others, and genuine motivation for Acme
+# good_answers: >-
+#   structured (STAR), concise, with concrete numbers and your own contribution
+
+# Who is being hired: calibrates questions, feedback and debrief scores.
+candidate_level: >-
+  Mid-level engineer with about three years of experience. Expect ownership of features end to end,
+  not org-wide architecture or people management.
+
+# Extra rules that follow from this process (things the interviewer must never ask or assume).
+# interviewer_rules: >-
+#   The candidate is currently employed, so never ask why they left.
+
+# Why candidates are reported to fail this round (from the recruiter, Glassdoor, prep guides).
+# known_failure_reasons: >-
+#   no numbers; blaming others; weak motivation for the company
+
+closing: say the recruiter will be in touch about next steps
+# candidate_question_ideas: the roadmap for the new payments platform, how on-call works
+
+# What the panel knows about their team: used for their intro and to answer your questions.
+team_facts: >-
+  Acme Payments builds the card and bank-transfer platform. Engineers own services end to end.
+
+# Who interviews you: one entry per role; each session picks one person per role.
+# Voices: af_heart, af_bella, af_nicole, bf_emma, am_michael, am_fenrir, bm_george, bm_fable.
+# opens: true = greets and runs the call (default: the first role). technical: true = asks the
+# technical-curiosity follow-ups. observer: true = introduced, never speaks (a shadow).
+panel:
+  - role: Engineering Manager, Payments
+    opens: true
+    people: [{name: Alex, voice: am_michael}, {name: Sarah, voice: bf_emma}]
+  # - role: Shadow                      # observes and takes notes, never speaks
+  #   observer: true
+  #   people: [{name: Jo, voice: af_nicole}]
+  # - role: Senior Backend Engineer, Payments
+  #   technical: true
+  #   people: [{name: Tom, voice: bm_george}, {name: Maya, voice: af_heart}]
+
+# Company values (optional). Tag questions with `value:` to make follow-ups probe that value; the
+# debrief rates each one.
+# values:
+#   Customer First:
+#     brief: what it means, in a line (sent every turn)
+#     probe: Who used it? How did you know it helped them?
+#     red_flags: no customer in the story
+
+# Names and terms that speech recognition should spell right.
+vocabulary: [Acme, Kubernetes, PostgreSQL, Python]
+
+# Files, relative to this folder.
+profile: profile.md
+notes: ""                   # your prepared stories (e.g. notes.md), sent only with the debrief
+questions: questions.yaml   # remove to use only the tool's default bank
+
+# Tool settings can be overridden per process:
+interview:
+  minutes: 30

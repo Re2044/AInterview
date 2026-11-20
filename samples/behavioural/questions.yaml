@@ -1,0 +1,19 @@
+# Sample bank: the tool's default behavioural bank, with role- and company-neutral motivation questions
+# (the sample company is fictional, so "Why Northwind?" would make no sense) and no engineering-only questions.
+extends_default: true
+exclude: [why_company, hardest_bug]
+
+questions:
+  - id: what_you_want
+    theme: motivation
+    core: true
+    q:
+      - "What are you looking for in your next role?"
+      - "What kind of team and work would make you excited to join?"
+      - "What made you apply for this role?"
+  - id: why_role
+    theme: motivation
+    core: true
+    q:
+      - "What interests you about this role?"
+      - "What would you most like to work on in your next job?"

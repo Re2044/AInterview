@@ -1,0 +1,11 @@
+# Company-specific questions, added to the tool's default bank (~/Projects/AInterviewer/questions.yaml).
+# Remove `extends_default` to use only the questions in this file.
+extends_default: true
+
+questions:
+  - id: why_company
+    theme: motivation
+    core: true
+    q:
+      - "Why Acme, and why now?"
+      - "What do you know about our payments platform?"

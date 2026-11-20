@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Runs AInterviewer from anywhere; the current folder is used as the process folder unless -p is given.
+DIR="$(cd "$(dirname "$(readlink -f "$0")")" && pwd)"
+PYTHONPATH="$DIR${PYTHONPATH:+:$PYTHONPATH}" exec "$DIR/.venv/bin/python" -m interviewer "$@"

@@ -1,0 +1,222 @@
+# Default behavioural question bank, used when a process has no questions.yaml of its own.
+# A process bank with `extends_default: true` adds to this one (same id = replaced).
+#
+# Each question has a few natural wordings, the way an interviewer actually asks on a video call; one is
+# picked at random and asked as written (no model rewording, no hypotheticals).
+# {company}, {team} and {role} are filled in from process.yaml.
+# theme: used for weak-spot tracking.
+# value: optional, the company value it mainly tests (a key under `values:` in process.yaml); while the
+#        question is open, follow-ups use that value's `probe`. Generic questions leave it empty.
+# core: true = asked first (one per theme, weak themes earlier); one `motivation` question is always
+#       placed at a random early point. Non-core questions are occasional extras.
+
+intro:
+  - "Could you tell me a bit about yourself and what you're working on at the moment?"
+  - "Maybe start by introducing yourself. What's your background, and what are you doing now?"
+  - "Tell me a bit about yourself."
+  - "Walk me through your background. What was the biggest result in each role?"
+
+questions:
+  # motivation (one is always asked)
+  - id: why_company
+    theme: motivation
+    core: true
+    q:
+      - "Why {company}?"
+      - "What made you apply to {company}?"
+      - "Why do you want to work at {company} specifically?"
+  - id: why_role
+    theme: motivation
+    core: true
+    q:
+      - "What interests you about this role?"
+      - "What would you like to work on here?"
+      - "What do you know about what {team} does?"
+  - id: why_leave
+    theme: motivation
+    core: true
+    q:
+      - "What made you decide to leave your last role?"
+      - "Why are you looking for a new role now?"
+      - "What are you looking for in your next role that you didn't have before?"
+  - id: five_years
+    theme: motivation
+    q:
+      - "Where do you see yourself in a few years?"
+      - "What do you want to be doing in three to five years?"
+
+  # achievement / impact
+  - id: achievement
+    theme: achievement
+    core: true
+    q:
+      - "What's your biggest achievement so far?"
+      - "What are you most proud of in your career so far?"
+      - "Tell me about the piece of work you're proudest of."
+  - id: measure_impact
+    theme: impact
+    core: true
+    q:
+      - "Tell me about something you improved. How did you measure the improvement?"
+      - "Can you give me an example of something you made measurably better?"
+  - id: customer_impact
+    theme: impact
+    core: true
+    q:
+      - "Tell me about something you built that made a real difference for users."
+      - "What's a piece of work where you could see the impact on customers?"
+
+  # mistake / weakness
+  - id: mistake
+    theme: mistake
+    core: true
+    q:
+      - "Tell me about a mistake you made at work."
+      - "Can you tell me about a time you got something wrong? What happened?"
+  - id: wrong_assumption
+    theme: mistake
+    core: true
+    q:
+      - "Tell me about a time you were sure about something and it turned out you were wrong."
+      - "Tell me about an assumption you made that turned out to be wrong."
+  - id: weakness
+    theme: weakness
+    core: true
+    q:
+      - "What's your biggest weakness?"
+      - "What's something you're still working on improving?"
+      - "If I asked your last manager what you should get better at, what would they say?"
+  - id: biggest_failure
+    theme: weakness
+    core: true
+    q:
+      - "What's your biggest failure so far?"
+      - "Tell me about a project that didn't go well."
+
+  # comfort zone / learning
+  - id: comfort_zone
+    theme: comfort_zone
+    core: true
+    q:
+      - "Tell me about a time you had to step out of your comfort zone."
+      - "When did you last have to do something you'd never done before at work?"
+  - id: unknown_area
+    theme: comfort_zone
+    core: true
+    q:
+      - "Tell me about a time you had to work on something completely new to you."
+      - "Tell me about a time you had to learn something fast to get a task done."
+
+  # ownership
+  - id: end_to_end
+    theme: ownership
+    core: true
+    q:
+      - "Tell me about something you owned end to end."
+      - "What's a project you drove from start to finish?"
+  - id: initiative
+    theme: ownership
+    core: true
+    q:
+      - "Tell me about something you did that nobody asked you to do."
+      - "Tell me about a time you spotted a problem and fixed it without being asked."
+  - id: responsibility
+    theme: ownership
+    core: true
+    q:
+      - "Tell me about a time you took responsibility for something that wasn't strictly your job."
+      - "Tell me about a time something went wrong and you stepped in."
+
+  # self-organisation / prioritisation
+  - id: organise
+    theme: self_organisation
+    core: true
+    q:
+      - "How do you organise your work day to day?"
+      - "How do you keep track of what you need to get done?"
+  - id: juggling
+    theme: self_organisation
+    core: true
+    q:
+      - "Tell me about a time you had a lot on your plate at once. How did you manage it?"
+      - "Tell me about your busiest period at work. How did you keep on top of it?"
+  - id: prioritisation
+    theme: prioritisation
+    core: true
+    q:
+      - "How do you prioritise when everything seems urgent?"
+      - "Tell me about a time you had to prioritise between competing tasks."
+      - "How do you handle conflicting priorities from two stakeholders?"
+  - id: say_no
+    theme: prioritisation
+    core: true
+    q:
+      - "Tell me about a time you had to say no to something."
+      - "Have you ever had to push back on a request? What happened?"
+
+  # extras (mixed in sometimes)
+  - id: tight_deadline
+    theme: pace
+    q:
+      - "Tell me about a time you had a really tight deadline."
+      - "Have you ever had to deliver something much faster than planned? How did it go?"
+  - id: blocked
+    theme: pace
+    q:
+      - "Tell me about a time you were blocked by another team."
+      - "What do you do when you're waiting on someone else to get your work done?"
+  - id: incomplete_info
+    theme: pace
+    q:
+      - "Tell me about a decision you made on incomplete information."
+      - "Tell me about a risky change you shipped. How did you make it safe?"
+  - id: disagreement
+    theme: conflict
+    q:
+      - "Tell me about a time you disagreed with someone more senior."
+      - "Tell me about a disagreement you had at work and how it was resolved."
+  - id: lost_argument
+    theme: conflict
+    q:
+      - "Tell me about a time a decision went against you."
+      - "Have you ever had to go along with a decision you didn't agree with?"
+  - id: tough_feedback
+    theme: feedback
+    q:
+      - "What's the toughest feedback you've received?"
+      - "Tell me about some critical feedback you got. What did you do with it?"
+  - id: gave_feedback
+    theme: feedback
+    q:
+      - "Tell me about a time you gave a colleague difficult feedback."
+      - "Have you ever had to tell a teammate something they didn't want to hear?"
+  - id: raise_bar
+    theme: standards
+    q:
+      - "Tell me about a time you raised the quality bar on your team."
+      - "Have you ever improved how your team works? What did you change?"
+  - id: not_good_enough
+    theme: standards
+    q:
+      - "Tell me about a time you weren't happy with 'good enough'."
+      - "Have you ever kept working on something after others thought it was done? Why?"
+  - id: data_decision
+    theme: standards
+    q:
+      - "Tell me about a decision you made based on data."
+      - "Can you give me an example where data changed your mind?"
+  - id: challenged_assumption
+    theme: standards
+    q:
+      - "Tell me about a time you questioned something everyone else took for granted."
+      - "Tell me about a time you realised the team was solving the wrong problem."
+  - id: simplify
+    theme: customer
+    q:
+      - "Tell me about something complicated you made simpler."
+      - "Have you built anything that made your team's life easier?"
+  - id: hardest_bug
+    theme: technical
+    q:
+      - "What's the hardest bug you've had to track down?"
+      - "Tell me about a tricky production issue you debugged."

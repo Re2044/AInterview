@@ -1,0 +1,62 @@
+# AInterviewer tool defaults. Nothing employer-specific lives here.
+# A process folder's process.yaml can override any section below (merged key by key), e.g.
+#   interview: {minutes: 45, max_followups: 2}
+
+interview:
+  minutes: 30              # total length, wall clock from the greeting
+  candidate_minutes: 5     # main questions stop when this much time is left; then your questions
+  max_questions: 10        # upper bound only: questions continue until the time above is reached
+  max_followups: 3         # per question, enforced in code
+  max_candidate_questions: 2
+  max_answer_seconds: 150  # interviewer cuts in politely after this
+  target_answer_seconds: [60, 120]
+  intro_skip_chance: 0.3   # sometimes they skip "tell me about yourself" and go straight to questions
+  extra_question_chance: 0.4  # chance of one off-script (non-core) question mixed in
+  curveball_chance: 0.25   # share of follow-ups that are deliberately uncomfortable
+  technical_chance: 0.3    # share of follow-ups that are technical curiosity (by a panel member with technical: true)
+  cross_followup_chance: 0.3  # with 2+ interviewers: the other one jumps in with the follow-up
+
+audio_device: auto       # auto = pipewire/pulse; or a name from `python -m sounddevice`
+
+llm:
+  # Provider for unprefixed models:
+  #   anthropic | claude-cli                                    Claude (API key, or the `claude` CLI + subscription)
+  #   openai | openrouter | groq | gemini | mistral | deepseek | together     cloud, key from <NAME>_API_KEY
+  #   ollama | lmstudio | llamacpp | vllm                       local, nothing leaves your machine
+  # auto = anthropic if ANTHROPIC_API_KEY is set, else claude-cli if installed, else a running Ollama.
+  # Any model below can name its own provider, e.g. model: ollama/qwen3:14b with
+  # debrief_model: anthropic/claude-opus-5-5. "auto" as a model = the first model a local server offers.
+  # CLI: --provider ollama [--model qwen3:14b] overrides all three jobs for one run.
+  provider: auto
+  # providers:             # optional: change a preset or add your own OpenAI-compatible endpoint
+  #   ollama: {base_url: "http://192.168.1.20:11434/v1"}
+  #   work: {base_url: "https://llm.example.com/v1", key_env: WORK_LLM_KEY}   # then model: work/<model>
+  #   Other keys: local (bool), extra_body ({...} merged into each request), send_effort (bool),
+  #   max_tokens_field (max_tokens | max_completion_tokens), min_max_tokens.
+  model: claude-opus-5-5   # interviewer turns; claude-haiku-5-5 is ~0.4 s faster but loses the thread more
+  debrief_model: claude-opus-5-5    # end-of-interview report: one call, quality matters most
+  debrief_effort: medium            # low = faster and shorter; high = deeper, slower
+  debrief_mode: auto                # single = one call; sections = several short calls (for low output caps);
+                                    # auto = sections when the debrief model is local
+  feedback_model: claude-opus-5-5   # drill mode's spoken feedback after each answer
+  feedback_effort: low              # keep low: it is spoken right after you finish
+  max_tokens: 160          # interviewer turns are 1-2 sentences
+  effort: low
+
+stt:
+  model: small.en          # tiny.en | base.en | small.en | distil-small.en | medium.en
+  compute_type: int8
+  end_turn: space          # space = your answer ends only when you press Space (pauses never end it);
+                           # silence = it also ends after the pause below
+  silence_end_seconds: 2.5 # with end_turn: silence, the pause that ends your answer
+  start_silence_seconds: 6.0  # ...but until you've spoken min_speech_seconds, a pause must be this long
+  min_speech_seconds: 4.0     #    (so "So, ... [thinking]" isn't sent as your whole answer)
+  chunk_pause_seconds: 0.6 # shorter pauses where audio is sent for background transcription
+  vad_threshold: 0.5
+
+tts:
+  model: models/kokoro-v1.0.onnx
+  voices: models/voices-v1.0.bin
+  voice: af_heart          # drill coach's voice; try bf_emma (British), am_michael, bm_george
+  speed: 1.05
+  acknowledgements: ["Mm-hm.", "Okay.", "Right.", "Got it.", "Sure."]
